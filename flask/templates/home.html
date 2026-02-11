@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-home">
+<nav class="navbar navbar-dark px-4">
+    <span class="navbar-brand">FraudGuard AI</span>
+
+    <div class="ms-auto d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm" onclick="openAbout()">About</button>
+        <a href="/" class="btn btn-outline-light btn-sm">Home</a>
+    </div>
+</nav>
+
+<div class="right-card-container">
+    <div class="glass-card shadow-lg p-5">
+        <h3 class="mb-3 text-center">Online Payments Fraud Detection</h3>
+        <p class="text-muted text-center">
+            Secure online transactions using Machine Learning and real-time analysis.
+        </p>
+
+        <div class="d-grid mt-4">
+            <a href="/submit" class="btn btn-primary btn-lg">
+                Get Started
+            </a>
+        </div>
+    </div>
+</div>
+<!-- About Modal -->
+<div id="aboutModal" class="about-modal">
+    <div class="about-card">
+
+        <div class="about-header">
+            <h3>About FraudGuard AI</h3>
+            <button class="close-btn" onclick="closeAbout()">✖</button>
+        </div>
+
+        <p class="about-text">
+            FraudGuard AI is an intelligent online payments fraud detection system
+            that uses machine learning to identify suspicious financial transactions
+            in real time.
+        </p>
+
+        <h5>How It Works</h5>
+        <ol class="about-list">
+            <li>User enters transaction details</li>
+            <li>Data is preprocessed and scaled</li>
+            <li>Machine learning model analyzes the transaction</li>
+            <li>Risk score and fraud level are generated</li>
+        </ol>
+
+        <h5>Example Transactions</h5>
+
+        <div class="example-box">
+            <strong>Legitimate Transaction</strong>
+            <p>
+                Type: Payment<br>
+                Amount: 5,000<br>
+                Sender Balance: 20,000 → 15,000
+            </p>
+        </div>
+
+        <div class="example-box warning">
+            <strong>High-Risk Transaction</strong>
+            <p>
+                Type: Cash Out<br>
+                Amount: 750,000<br>
+                Sender Balance: 750,000 → 0<br>
+                Receiver Balance: 0 → 0
+            </p>
+        </div>
+
+    </div>
+</div>
+<script>
+function openAbout() {
+    document.getElementById("aboutModal").style.display = "flex";
+}
+
+function closeAbout() {
+    document.getElementById("aboutModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
