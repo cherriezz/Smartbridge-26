@@ -8,7 +8,6 @@ app = Flask(__name__,
             static_folder="static")
 
 MODEL_PATH = "payments.pkl"
-
 SCALER_PATH = "scaler.pkl"
 
 if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH):
@@ -19,18 +18,15 @@ else:
     scaler = None
 
 
-if os.path.exists(MODEL_PATH):
-    model = joblib.load(MODEL_PATH)
-else:
-    model = None
-
 @app.route("/")
 def home():
     return render_template("home.html")
 
+
 @app.route("/submit")
 def submit():
     return render_template("submit.html")
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -54,7 +50,6 @@ def predict():
     oldbalanceDest = float(request.form["oldbalanceDest"])
     newbalanceDest = float(request.form["newbalanceDest"])
 
-    # 🔥 Auto-handled (industry practice)
     isFlaggedFraud = 0
 
     input_data = np.array([[
@@ -65,10 +60,9 @@ def predict():
     ]])
 
     input_data_scaled = scaler.transform(input_data)
-
     prob = model.predict_proba(input_data_scaled)[0][1]
 
-    # ---------- Risk Boosting Rules ----------
+    # ---------- Risk Rules ----------
     risk_reasons = []
     risk_boost = 0
 
@@ -109,7 +103,6 @@ def predict():
         reasons=risk_reasons
     )
 
-    return render_template("predict.html", prediction=result)
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
