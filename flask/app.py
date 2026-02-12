@@ -3,7 +3,9 @@ import numpy as np
 import joblib
 import os
 
-app = Flask(__name__)
+app = Flask(__name__,
+            template_folder="templates",
+            static_folder="static")
 
 MODEL_PATH = "payments.pkl"
 
@@ -110,4 +112,4 @@ def predict():
     return render_template("predict.html", prediction=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
