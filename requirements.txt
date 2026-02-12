@@ -1,7 +1,7 @@
-streamlit
-requests
 flask
-scikit-learn
-joblib
 numpy
 pandas
+scikit-learn
+joblib
+requests
+streamlit
