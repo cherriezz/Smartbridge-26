@@ -1,5 +1,5 @@
 body {
-    min-height: 100vh;
+    min-height: 50vh;
     font-family: "Segoe UI", sans-serif;
 }
 
@@ -180,6 +180,6 @@ body {
 .example-box.warning {
     background: #fff1f2;
     border-left: 4px solid #dc2626;
-}
+}  
 
 

@@ -3,12 +3,10 @@ import numpy as np
 import joblib
 import os
 
-app = Flask(__name__,
-            template_folder="templates",
-            static_folder="static")
+app = Flask(__name__)
 
-MODEL_PATH = "payments.pkl"
-SCALER_PATH = "scaler.pkl"
+MODEL_PATH = "model/payments.pkl"
+SCALER_PATH = "model/scaler.pkl"
 
 if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH):
     model = joblib.load(MODEL_PATH)
@@ -74,11 +72,11 @@ def predict():
         risk_boost += 0.10
         risk_reasons.append("High-risk transaction type")
 
-    if oldbalanceOrg > 0 and newbalanceOrig / oldbalanceOrg < 0.2:
+    if oldbalanceOrg > 0 and (newbalanceOrig / oldbalanceOrg) < 0.2:
         risk_boost += 0.15
         risk_reasons.append("Sender balance drastically reduced")
 
-    if oldbalanceDest == 0 and newbalanceDest == 0:
+    if oldbalanceDest == newbalanceDest:
         risk_boost += 0.25
         risk_reasons.append("Receiver balance unchanged after transfer")
 
