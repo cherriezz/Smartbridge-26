@@ -50,12 +50,16 @@ def predict():
         oldbalanceDest = float(request.form["oldbalanceDest"])
         newbalanceDest = float(request.form["newbalanceDest"])
 
-        # 🔴 IMPORTANT: use ONLY 7 features first
+        # 🔴 IMPORTANT: use 8 features 
+        isFlaggedFraud = 0  # Always 0 for user input
+
         input_data = np.array([[
             step, type_val, amount,
             oldbalanceOrg, newbalanceOrig,
-            oldbalanceDest, newbalanceDest
+            oldbalanceDest, newbalanceDest,
+            isFlaggedFraud
         ]], dtype=float)
+
 
         logging.debug(f"Input data shape: {input_data.shape}")
 
