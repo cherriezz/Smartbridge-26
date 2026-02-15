@@ -136,7 +136,9 @@ http://127.0.0.1:5000/
 ## 👨‍💻 Author
 
 **Online Payments Fraud Detection using Machine Learning**
+
 Category: **Artificial Intelligence**
+
 Deployment: **Localhost (Flask)**
 
 
